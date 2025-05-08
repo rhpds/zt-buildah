@@ -1,0 +1,30 @@
+*Buildah* has two main ways to create images:
+
+* Using subcommands to modify contents
+* Using host tools to modify a container filesystem
+
+First, we’ll look at using subcommands to modify the container contents
+before saving an image. Many *buildah* subcommands act like directives
+from a Containerfile. This allows for a familiar experience while
+automating builds.
+
+The Red Hat Universal Base Image is provided as the starting point for
+creating containers with Red Hat Enterprise Linux packages. More
+information on UBI can be found in the
+https://www.redhat.com/en/blog/introducing-red-hat-universal-base-image[introductory
+blog post.]
+
+To build an application container from the `+ubi-init+` base image, we
+will create a working container with `+buildah+`. A working container is
+a temporary container used as the target for buildah commands.
+
+[source,bash,run]
+----
+buildah from registry.access.redhat.com/ubi9/ubi-init
+----
+
+This subcommand acts like the FROM directive in a Containerfile and
+makes the source image available on the host.
+
+Buildah will append `+-working-container+` to the image name used. If
+that name already exists, a number will also be appended.

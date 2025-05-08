@@ -1,0 +1,74 @@
+In order to install `+httpd+` in the scratch container, use `+yum+` on
+the host with the `+installroot+` option targeting the mount point of
+the container’s filesystem.
+
+____
+_NOTE:_ Setting the `+releasever+` and `+module_platform_id+` are
+required as this will be operating in a chroot environment where `+yum+`
+config files are not available.
+____
+
+[source,bash,run]
+----
+yum install --installroot ${scratchmnt} httpd --releasever 9 --setopt=module_platform_id="platform:el9" -y
+----
+
+This method installs more packages than using the pre-built base image,
+but we have `+httpd+` and `+systemd+` but not other typical system tools
+like `+yum+`.
+
+To enable `+httpd+` to start when the container is run using systemd,
+use the following `+buildah+` command.
+
+[source,bash,run]
+----
+buildah run working-container systemctl enable httpd
+----
+
+Deploying web content to the container image can be done using a `+cp+`
+command on the host to the working container mount point. We’ve included
+an html index file in /root called `+index2.html+`.
+
+[source,bash,run]
+----
+cp index2.html ${scratchmnt}/var/www/html/index.html
+----
+
+After installing packages and adding the index file, unmount the
+filesystem with the `+buildah unmount+` subcommand.
+
+[source,bash,run]
+----
+buildah unmount working-container
+----
+
+To expose the web server port and set systemd to start when the
+container is run, modify the metadata with the `+buildah config+`
+subcommand.
+
+[source,bash,run]
+----
+buildah config --port 80 --cmd "/usr/sbin/init" working-container
+----
+
+These options to `+buildah config+` are equivalent to the EXPOSE and CMD
+directives in a Containerfile.
+
+____
+_NOTE:_ As we’re using systemd to start the service, use the `+--cmd+`
+option not `+--entrypoint+`.
+____
+
+Once the contents of the working container are complete, and the
+metadata has been updated, save the working container as the target
+application image using `+buildah commit+`.
+
+[source,bash,run]
+----
+buildah commit working-container el-httpd2
+----
+
+In this example, all operations were done directly to the container
+filesystem, resulting in a single layer. The `+buildah commit+` step can
+be run at any point where a layer is needed, for example to cache a
+common set of packages across multiple applications.

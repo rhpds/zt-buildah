@@ -1,0 +1,64 @@
+The `+ubi-init+` image is very complete, including tools like `+yum+`
+and `+systemd+`. You can install `+httpd+` via `+yum+` in the container
+using the `+buildah run+` subcommand.
+
+[source,bash,run]
+----
+buildah run ubi-init-working-container -- yum -y install httpd
+----
+
+This subcommand acts like the RUN directive in an Containerfile. Since
+the `+yum+` command includes a switch `+-y+`, we need to use the `+--+`
+syntax to tell `+buildah run+` there are no buildah options to look for
+past this point.
+
+Once the packages are installed in the working container, enable
+`+httpd+` to start when the container is run via systemd using the
+`+buildah run+` subcommand.
+
+[source,bash,run]
+----
+buildah run ubi-init-working-container systemctl enable httpd
+----
+
+Deploying web content to the container image can be done using the
+`+buildah copy+` subcommand. In the /root directory we’ve included an
+html index file `+index1.html+`. Copy this file into the container with
+the `+buildah copy+` command below.
+
+[source,bash,run]
+----
+buildah copy ubi-init-working-container index1.html /var/www/html/index.html
+----
+
+This subcommand acts like the COPY directive in a Containerfile.
+
+To expose the web server port and set systemd to start when the
+container is run, modify the metadata with the `+buildah config+`
+subcommand.
+
+[source,bash,run]
+----
+buildah config --port 80 --cmd "/usr/sbin/init" ubi-init-working-container
+----
+
+These options to `+buildah config+` are equivalent to the EXPOSE and CMD
+directives in a Containerfile.
+
+____
+_NOTE:_ As we’re using systemd to start the service, use the `+--cmd+`
+option not `+--entrypoint+`.
+____
+
+Once the contents of the working container are complete, and the
+metadata has been updated, save the working container as the target
+application image using `+buildah commit+`. We are naming the contianer
+`+el-httpd1+`.
+
+[source,bash,run]
+----
+buildah commit ubi-init-working-container el-httpd1
+----
+
+In this example, each previous `+buildah+` subcommand results in a
+separate layer, much like building using a Containerfile.

@@ -1,0 +1,27 @@
+---
+antora:
+  name: modules
+  dir: www
+  modules:
+    - name: "01-create"
+      label: "Create"
+      solveButton: true
+    - name: "02-appimage"
+      label: "Appimage"
+      solveButton: true
+    - name: "03-launch"
+      label: "Launch"
+      solveButton: true
+    - name: "04-create-from-scratch"
+      label: "Create From Scratch"
+      solveButton: true
+    - name: "05-create-from-scratch-contd"
+      label: "Create From Scratch Contd"
+      solveButton: true
+    - name: "06-launch-final"
+      label: "Launch Final"
+      solveButton: true
+
+tabs:
+  - name: ">_ terminal"
+    url: /wetty

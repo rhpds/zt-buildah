@@ -1,0 +1,50 @@
+More information on managing containers with `+podman+` can be found in
+the https://lab.redhat.com/podman-deploy["`Deploying containers with
+container tools`"] scenario.
+
+Inspect the images available on the host using `+podman images+`
+
+[source,bash,run]
+----
+podman images
+----
+
+Note the name matches what was set using `+buildah commit+`.
+
+`+Podman+` and `+buildah+` use the same storage locations on the host,
+which lets us immediately run the image we just built via `+podman+`.
+
+[source,bash,run]
+----
+podman run -d -p 80:80 el-httpd2
+----
+
+Check the status of the application container using `+podman+`.
+
+[source,bash,run]
+----
+podman ps
+----
+
+Note the ports and command match the metadata set using
+`+buildah config+`.
+
+Inspect the image metadata for the application container using
+`+buildah inspect+`.
+
+[source,bash,run]
+----
+buildah inspect localhost/el-httpd2 | grep -A 8 rootfs
+----
+
+Look for the `+rootfs+` section in the JSON output. You will see the
+single layer created by the `+buildah commit+` subcommand.
+
+Run the following `+curl+` command to check that the container is
+serving a web page. Alternatively, you can view the page in the Index
+page tab.
+
+[source,bash,run]
+----
+curl localhost:80
+----

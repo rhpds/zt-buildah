@@ -1,0 +1,41 @@
+Starting from an existing base container isn’t the only option available
+to `+buildah+`. `+Buildah+` can create a minimal container image that
+contains metadata and a filesystem stub.
+
+To create this style of image use the `+scratch+` special target for
+`+buildah from+`.
+
+[source,bash,run]
+----
+buildah from scratch
+----
+
+Since there’s no starting image, the working container will be called
+`+working-container+`.
+
+We can start working with the scratch container using tools on the host
+by mounting the container filesystem on the host using
+`+buildah mount+`.
+
+____
+_NOTE:_ We capture the output of the `+buildah+` command in the variable
+_scratchmnt_ to make it easier to work with the filesystem path in these
+exercises.
+____
+
+[source,bash,run]
+----
+scratchmnt=$(buildah mount working-container)
+----
+
+[source,bash,run]
+----
+echo ${scratchmnt}
+----
+
+Right now, that directory is empty.
+
+[source,bash,run]
+----
+ls -l ${scratchmnt}
+----

@@ -1,0 +1,9 @@
+---
+name: modules
+version: master
+
+asciidoc:
+  attributes:
+    lab_name: "Creating images with Container Tools [buildah]"
+    release-version: master
+    page-pagination: true
