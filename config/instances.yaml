@@ -22,6 +22,6 @@ virtualmachines:
           - name: httpd
             host: httpd
             service: httpd
-            targetPort: 9090
+            targetPort: 80
             tls: true
             tls_termination: Edge
