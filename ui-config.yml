@@ -5,22 +5,22 @@ antora:
   modules:
     - name: "01-create"
       label: "Create"
-      solveButton: true
+      solveButton: false
     - name: "02-appimage"
       label: "Appimage"
-      solveButton: true
+      solveButton: false
     - name: "03-launch"
       label: "Launch"
-      solveButton: true
+      solveButton: false
     - name: "04-create-from-scratch"
       label: "Create From Scratch"
-      solveButton: true
+      solveButton: false
     - name: "05-create-from-scratch-contd"
       label: "Create From Scratch Contd"
-      solveButton: true
+      solveButton: false
     - name: "06-launch-final"
       label: "Launch Final"
-      solveButton: true
+      solveButton: false
 
 tabs:
   - name: ">_ terminal"
