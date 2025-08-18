@@ -11,3 +11,17 @@ virtualmachines:
         value: "bastions"
     networks:
       - default
+    services:
+          - name: httpd
+            ports:
+              - port: 80
+                protocol: TCP
+                targetPort: 80
+                name: httpd
+    routes:
+          - name: httpd
+            host: httpd
+            service: httpd
+            targetPort: 9090
+            tls: true
+            tls_termination: Edge
