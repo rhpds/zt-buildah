@@ -4,4 +4,6 @@ egress:
   - ports:
       - protocol: TCP
         port: 443
+      - protocol: HTTP
+        port: 80
 
