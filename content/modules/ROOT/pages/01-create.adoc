@@ -20,7 +20,7 @@ a temporary container used as the target for buildah commands.
 
 [source,bash,run]
 ----
-buildah from registry.access.redhat.com/ubi9/ubi-init
+buildah from registry.access.redhat.com/ubi10/ubi-init
 ----
 
 This subcommand acts like the FROM directive in a Containerfile and
