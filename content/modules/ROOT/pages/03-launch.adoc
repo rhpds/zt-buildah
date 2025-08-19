@@ -18,7 +18,7 @@ which lets us immediately run the image we just built via `+podman+`.
 
 [source,bash,run]
 ----
-podman run -d -p 7000:7000 el-httpd1
+podman run -d -p 7000:80 el-httpd1
 ----
 
 Check the status of the application container using `+podman+`.
