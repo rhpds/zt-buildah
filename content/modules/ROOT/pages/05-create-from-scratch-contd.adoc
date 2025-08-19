@@ -10,7 +10,7 @@ ____
 
 [source,bash,run]
 ----
-yum install --installroot ${scratchmnt} httpd --releasever 9 --setopt=module_platform_id="platform:el9" -y
+yum install --installroot ${scratchmnt} httpd --releasever 10 --setopt=module_platform_id="platform:el10" -y
 ----
 
 This method installs more packages than using the pre-built base image,
