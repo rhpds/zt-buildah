@@ -39,7 +39,7 @@ filesystem with the `+buildah unmount+` subcommand.
 
 [source,bash,run]
 ----
-buildah unmount working-container
+buildah unshare buildah unmount working-container
 ----
 
 To expose the web server port and set systemd to start when the
