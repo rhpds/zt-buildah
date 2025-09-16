@@ -9,7 +9,7 @@ systemctl disable httpd
 
 podman image rm rhel8-httpd
 
-cat >> /home/rhel/index1.html <<-EOF
+cat >> ~/index1.html <<-EOF
 
 <!DOCTYPE html>
 <head>
@@ -20,7 +20,7 @@ cat >> /home/rhel/index1.html <<-EOF
 </body>
 EOF
 
-cat >> /home/rhel/index2.html <<-EOF
+cat >> ~/index2.html <<-EOF
 
 <!DOCTYPE html>
 <head>
