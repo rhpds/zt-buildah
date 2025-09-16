@@ -11,3 +11,17 @@ virtualmachines:
         value: "bastions"
     networks:
       - default
+    services:
+      - name: containerview
+        ports:
+          - port: 8000
+            protocol: TCP
+            targetPort: 8000
+            name: adminer
+    routes:
+      - name: containerview
+        host: containerview
+        service: containerview
+        targetPort: 8000
+        tls: true
+        tls_termination: Edge
