@@ -26,4 +26,4 @@ tabs:
   - name: ">_ terminal"
     url: /wetty_rhel/ssh/root
   - name: "Container web view"
-    url: http://containerview-${guid}.${domain}:8000
+    url: http://containerview-${guid}.${domain}

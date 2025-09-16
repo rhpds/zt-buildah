@@ -17,7 +17,7 @@ virtualmachines:
           - port: 8000
             protocol: TCP
             targetPort: 8000
-            name: adminer
+            name: containerview
     routes:
       - name: containerview
         host: containerview
