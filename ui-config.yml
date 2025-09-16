@@ -24,4 +24,9 @@ antora:
 
 tabs:
   - name: ">_ terminal"
-    url: /wetty
+    url: /wetty_rhel/ssh/root
+  - name: "Container web view"
+    url: http://containerview-${guid}.${domain}
+    modules:
+    - "03-launch"
+    - "06-launch-final"

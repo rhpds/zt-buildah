@@ -16,7 +16,7 @@ which lets us immediately run the image we just built via `+podman+`.
 
 [source,bash,run]
 ----
-podman run -d -p 80:80 el-httpd2
+podman run -d -p 8000:80 el-httpd2
 ----
 
 Check the status of the application container using `+podman+`.
@@ -46,5 +46,5 @@ page tab.
 
 [source,bash,run]
 ----
-curl localhost:80
+curl localhost:8000
 ----

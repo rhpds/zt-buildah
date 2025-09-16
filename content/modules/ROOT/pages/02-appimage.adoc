@@ -39,7 +39,7 @@ subcommand.
 
 [source,bash,run]
 ----
-buildah config --port 80 --cmd "/usr/sbin/init" ubi-init-working-container
+buildah config --port 8000 --cmd "/usr/sbin/init" ubi-init-working-container
 ----
 
 These options to `+buildah config+` are equivalent to the EXPOSE and CMD

@@ -10,7 +10,7 @@ ____
 
 [source,bash,run]
 ----
-yum install --installroot ${scratchmnt} httpd --releasever 9 --setopt=module_platform_id="platform:el9" -y
+yum install --installroot ${scratchmnt} httpd --releasever 10 --setopt=module_platform_id="platform:el10" -y
 ----
 
 This method installs more packages than using the pre-built base image,
@@ -48,7 +48,7 @@ subcommand.
 
 [source,bash,run]
 ----
-buildah config --port 80 --cmd "/usr/sbin/init" working-container
+buildah config --port 8000 --cmd "/usr/sbin/init" working-container
 ----
 
 These options to `+buildah config+` are equivalent to the EXPOSE and CMD
