@@ -339,3 +339,12 @@ egress:
         cidr: 95.101.124.251/32
     - ipBlock:
         cidr: 96.17.184.251/32
+
+ingress:
+  - ports:
+      - protocol: TCP
+        port: 8000
+  - from:
+      - podSelector:
+          matchLabels:
+            kubevirt.io: showroom
